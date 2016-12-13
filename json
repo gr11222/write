@@ -1,0 +1,1 @@
+function setJson(jsonStr, name, value, array){    if(!jsonStr)jsonStr="{}";    var jsonObj = JSON.parse(jsonStr);    if (array) {        jsonObj[name] = eval("["+value+"]");    }    else {        jsonObj[name] = value;    }    return JSON.stringify(jsonObj) }

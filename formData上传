@@ -1,0 +1,20 @@
+$("#jquery_post").on("click",function(){
+            var data=new FormData;
+            data.append("testfile",document.getElementById("file_upload").files[0]);
+            $.ajax({
+                url:"/test/",
+                type:"POST",
+                dataType:"JSON",
+                data:data,
+                contentType: false,
+                processData: false,
+                success:function(rst){
+                    if(rst.state){
+                        var url="/"+rst.data;
+                        $('<img class="show-img" src="'+url+'">').appendTo("#imgs")
+                    }
+                }
+            })
+        })
+
+注意：jquery的ajax会自动把我们的数据转换成字符串，不想转换时需要在ajax里面写入：contentType: false,processData: false

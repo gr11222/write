@@ -1,5 +1,5 @@
 $("#jquery_post").on("click",function(){
-            var data=new FormData;
+            var data=new FormData();
             data.append("testfile",document.getElementById("file_upload").files[0]);
             $.ajax({
                 url:"/test/",

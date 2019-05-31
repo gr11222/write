@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var twoSum = function(nums, target) {
+		    var arr = [];
+		    nums.forEach((item,index)=>{
+		        for(var i = index+1;i<nums.length;i++){
+		            if(item+nums[i]==target){
+		                if(arr.indexOf(index)==-1)
+		                	arr.push(index)
+		                if(arr.indexOf(i)==-1)
+		                	arr.push(i)
+		            }   
+		        }
+		    })
+		    return arr
+		};
+		console.log(twoSum([2, 7, 2, 7],9))
+	</script>
+</body>
+</html>

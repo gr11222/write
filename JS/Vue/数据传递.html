@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    // 1.props和$emit
+    // 2.中央事件总线
+    Vue.component('brother1', {
+        data() { return { mymessage: 'hello brother1' } },
+        template: ` <div> <p>this is brother1 compoent!</p> <input type="text" v-model="mymessage" @input="passData(mymessage)"> </div> `,
+        methods: {
+            passData(val) {
+                //触发全局事件globalEvent 
+                bus.$emit('globalEvent', val)
+            }
+        }
+    })
+    Vue.component('brother2', {
+        template: ` <div> <p>this is brother2 compoent!</p> <p>brother1传递过来的数据：{{brothermessage}}</p> </div> `,
+        data() { return { mymessage: 'hello brother2', brothermessage: '' } },
+        mounted() { //绑定全局事件globalEvent 
+            bus.$on('globalEvent', (val) => { this.brothermessage = val; })
+        }
+    }) //中央事件总线 
+    var bus = new Vue();
+    var app = new Vue({ el: '#app', template: ` <div> <brother1></brother1> <brother2></brother2> </div> ` })
+    // 3.$parent和$children
+    Vue.component('child', {
+        props: {
+            value: String, //v-model会自动传递一个字段为value的prop属性 
+        },
+        data() { return { mymessage: this.value } },
+        methods: {
+            changeValue() {
+                this.$parent.message = this.mymessage; //通过如此调用可以改变父组件的值 
+            }
+        },
+        template: ` <div> <input type="text" v-model="mymessage" @change="changeValue"> </div>`
+    })
+    Vue.component('parent', {
+        template: ` < div > <p>this is parent compoent!</p> < button @click = "changeChildValue" > test < /button > <child></child > < /div> `,
+        methods: { changeChildValue() { this.$children[0].mymessage = 'hello'; } },
+        data() { return { message: 'hello' } }
+    })
+    var app = new Vue({ el: '#app', template: ` <div> <parent></parent > < /div> ` })
+    // 4. v-model
+    // 父组件通过v-model传递值给子组件时，会自动传递一个value的prop属性，在子组件中通过this.$emit(‘input’,val)自动修改v-model绑定的值
+    Vue.component('child', {
+        props: {
+            value: String, //v-model会自动传递一个字段为value的prop属性 
+        },
+        data() { return { mymessage: this.value } },
+        methods: {
+            changeValue() {
+                this.$emit('input', this.mymessage); //通过如此调用可以改变父组件上v-model绑定的值 
+            }
+        },
+        template: ` <div> <input type="text" v-model="mymessage" @change="changeValue"> </div>`
+    })
+    Vue.component('parent', { template: ` < div > <p>this is parent compoent!</p> < p > { { message } } < /p> <child v-model="message"></child > < /div> `, data() { return { message: 'hello' } } })
+    var app = new Vue({ el: '#app', template: ` <div> <parent></parent > < /div> ` })
+    // 5.provide和inject
+    Vue.component('child', {
+        inject: ['for'], //得到父组件传递过来的数据 
+        data() { return { mymessage: this.for } },
+        template: ` <div> <input type="tet" v-model="mymessage"> </div>`
+    })
+    Vue.component('parent', { template: ` < div > <p>this is parent compoent!</p> < child > < /child> </div > `, provide: { for: 'test' }, data() { return { message: 'hello' } } }) var app = new Vue({ el: '#app', template: ` < div > <parent></parent> < /div> ` })
+    </script>
+</body>
+
+</html>

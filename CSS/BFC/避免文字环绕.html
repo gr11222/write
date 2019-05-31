@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+		#text{overflow: auto;}
+	</style>
+</head>
+<body>
+	<div>
+		<div style="background: red;float: left;">inner</div>
+		<!-- 在BFC上下文中，每个盒子的左外侧紧贴包含块的左侧（从右到左的格式里，则为盒子右外侧紧贴包含块右侧），甚至有浮动也是如此（尽管盒子里的行盒子 Line Box 可能由于浮动而变窄），除非盒子创建了一个新的BFC（在这种情况下盒子本身可能由于浮动而变窄）。 -->
+		<div id="text">打的撒大大的安山东萨达萨达撒的撒打算的撒的萨达撒的撒的撒多大事的撒打算的撒</div>
+		<!-- 创建新BFC不会再紧贴包含块的左侧了 -->
+	</div>
+</body>
+</html>

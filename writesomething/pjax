@@ -1,0 +1,54 @@
+//pjax
+//eleMenus为$('li')
+var eleMenus = $('li').on('click', function(event) {
+    $(this).css('color', 'red').siblings().css('color', '#000');
+    var title = $(this).attr('data');
+    $.ajax({
+        type: "get",
+        dataType: 'json',
+        url: 'json/' + $(this).attr('data') + '.json',
+        contentType: "application/text,charset=utf-8",
+        success: function(msg) {
+            $("#content").html(msg.a)
+        },
+    })
+    console.log(event.button) //判断鼠标的点击还是后退的代码点击，代码点击event.button为undefined
+    if (event && /\d/.test(event.button)) {
+        history.pushState({
+            title: title
+        }, title, '?' + $(this).attr('data'));
+    }
+    return false;
+})
+var fnHashTrigger = function(target) {
+    var query = location.href.split("?")[1],
+        eleTarget = target || null;
+    //首次进入页面的处理
+    if (typeof query == "undefined") {
+        if (eleTarget = eleMenus.get(0)) {
+            history.replaceState(null, document.title, location.href + "?" + eleTarget.getAttribute('data')) + location.hash;
+            fnHashTrigger(eleTarget);
+        }
+    } else {
+        //菜单属性的比对
+        eleMenus.each(function() {
+            if (eleTarget === null && this.getAttribute('data') === query) {
+                eleTarget = this;
+            }
+        });
+
+        if (!eleTarget) {
+            history.replaceState(null, document.title, location.href.split("?")[0]);
+            fnHashTrigger();
+        } else {
+            //触发click
+            $(eleTarget).trigger("click");
+        }
+    }
+};
+//进入页面触发一次
+fnHashTrigger();
+//监听后退事件
+window.addEventListener("popstate", function() {
+    fnHashTrigger()
+});

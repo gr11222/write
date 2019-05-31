@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+		#container{
+			border: 1px solid #000;
+			overflow: auto;
+			/*BFC解决高度塌陷*/
+		}
+		.left{
+			float: left;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div class="left" style="background: red;">块1</div>
+		<div class="left" style="background: green;">块2</div>
+	</div>
+</body>
+</html>

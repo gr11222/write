@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		let p1 = new Promise(res=>{
+				setTimeout(function(){
+					res(1)
+				},3000)
+			})
+		,p2 = new Promise(res=>{
+				setTimeout(function(){
+					res(2)
+				},1000)
+			})
+		var arr = []
+		console.log(new Date().getSeconds())
+		p1.then(data=>{
+			arr.push(data);
+			p2.then(data=>{
+				arr.push(data);
+				console.log(new Date().getSeconds());
+				console.log(arr)
+			}
+		)})
+		p1.then(data=>{arr.push(data);p2.then(data=>{arr.push(data);console.log(new Date().getSeconds());console.log(arr)})})
+		// function sequence(promises){
+		// 	return new Promise((res,rej)=>{
+		// 		if(!isArray(promises)){
+		// 			return reject(throw new TypeError("4645"))
+		// 		}
+		// 		for (var i = 0; i < promises.length; i++) {
+		// 			(function(){
+		// 				promises[i].then()
+		// 			})(i)
+		// 		}
+
+		// 	})
+		// }
+// 		Promise.all = arr => {
+// 			console.log(new Date().getSeconds())
+// 		    let aResult = [];    //用于存放每次执行后返回结果
+// 		    return new Promise(function (resolve, reject) {
+// 		      let i = 0;
+// 		      next();    //开始逐次执行数组中的函数
+// 		      function next() {
+// 		        arr[i]().then(function (res) {
+// 		          aResult.push(res);    //执行后返回的结果放入数组中
+// 		          console.log(res)
+// 		          i++;
+// 		          if (i == arr.length) {    //如果函数数组中的函数都执行完，便把结果数组传给then
+		          	
+// 		            resolve(aResult);
+// 		          } else {
+// 		          	 // resolve(aResult);
+// 		            next();
+// 		          }
+// 		        })
+// 		      }
+// 		    })
+// 		  };
+// Promise.all([p1,p2]).then(data=>{console.log(data);console.log(new Date().getSeconds())})
+	</script>
+</body>
+</html>

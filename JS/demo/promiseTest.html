@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    const PENDING = "pending";
+    const RESOLVED = "resolved";
+    const REJECTED = "rejected";
+
+    function PromiseTest(resolver) {
+    	debugger
+        let _this = this;
+        _this.state = PENDING;
+        _this.value = undefined;
+        _this.reason = undefined;
+        // 成功存放的数组
+        _this.onResolvedCallbacks = [];
+        // 失败存放法数组
+        _this.onRejectedCallbacks = [];
+        var resolve = function(data) {
+        	debugger
+            _this.state = RESOLVED;
+            _this.value = data;
+            _this.onResolvedCallbacks.forEach(fn => fn());
+        }
+        var reject = function(err) {
+            _this.state = REJECTED;
+            _this.reason = err;
+            _this.onRejectedCallbacks.forEach(fn => fn());
+        }
+        try {
+            resolver(resolve, reject)
+        } catch (e) {
+            reject(e)
+        }
+    }
+    PromiseTest.prototype.then = function(onFulfilled, onRejected) {
+    	debugger
+        let _this = this;
+        if (_this.state === RESOLVED) {
+            onFulfilled(_this.value)
+        } else if (_this.state === REJECTED) {
+            onRejected(_this.reason)
+        }
+        // 当状态state为pending时
+        if (_this.state === PENDING) {
+            // onFulfilled传入到成功数组
+            _this.onResolvedCallbacks.push(() => {
+                onFulfilled(_this.value);
+            })
+            // onRejected传入到失败数组
+            _this.onRejectedCallbacks.push(() => {
+                onRejected(_this.reason);
+            })
+        }
+    }
+    PromiseTest.prototype.catch = function() {}
+
+    // PromiseTest.resolve = function(data){
+    // 	let _this = this;
+    // 	_this.state = RESOLVED;
+    // 	_this.value = data;
+    // 	_this.onResolvedCallbacks.forEach(fn=>fn());
+    // }
+    // PromiseTest.reject = function(err){
+    // 	let _this = this;
+    // 	_this.state = REJECTED;
+    // 	_this.reason = err;
+    // 	_this.onRejectedCallbacks.forEach(fn=>fn());
+    // }
+
+    PromiseTest.all = function() {}
+    PromiseTest.race = function() {}
+
+    var pro = new PromiseTest(function(res) {
+        // setTimeout(() => { res(1) }, 1000)
+        res(1)
+    });
+    pro.then(data => { console.log(data) })
+    </script>
+</body>
+
+</html>

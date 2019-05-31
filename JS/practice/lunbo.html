@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    ul {
+        width: 300px;
+        position: relative;
+        overflow: hidden;
+        height: 200px;
+    }
+
+    ul div {
+        overflow: hidden;
+        width: 1500px;
+        left: 0;
+        position: absolute;
+    }
+
+    ul li {
+        width: 300px;
+        height: 200px;
+        float: left;
+    }
+    </style>
+</head>
+
+<body>
+    <ul id="box">
+        <div id="innerbox" style="left: 0">
+            <li style="background: red"></li>
+            <li style="background: blue"></li>
+            <li style="background: pink"></li>
+            <li style="background: green"></li>
+            <li style="background: red"></li>
+        </div>
+    </ul>
+    <script type="text/javascript">
+    var num = 1;
+    setInterval(function() {
+        if (num == 5) {
+            num = 0
+            innerbox.style.left = '0px'
+        }
+        if (num == 0) {
+            num = 1
+        }
+        animate(num++)
+    }, 1000)
+    var innerbox = document.getElementById('innerbox');
+
+    function animate(index) {
+        var target = -index * 300;
+        var step = 5;
+        var timer = setInterval(function() {
+            var left = parseInt(innerbox.style.left);
+            // setInterval在浏览器切后台的时候会乱掉 使用setTimeout递归函数
+            if (target >= left) {
+                clearInterval(timer)
+            }
+            innerbox.style.left = left + Math.floor((target - left) / step) + 'px';
+        }, 16)
+    }
+    </script>
+</body>
+
+</html>

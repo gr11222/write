@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    // var combinationSum = function(candidates, target) {
+    //     let result = [];
+    //     for (let i = 0; i < candidates.length; i += 1) {
+    //         const candidate = candidates[i];
+    //         const left = target - candidate;
+    //         if (left === 0) {
+    //             result.push([candidate]);
+    //         } else if (left > 0) {
+    //             result = result.concat(
+    //                 combinationSum(candidates.slice(i), left).map(arr => [candidate].concat(arr))
+    //             );
+    //         }
+    //     }
+    //     return result;
+    // };
+    // console.log(combinationSum([4,5],8))
+
+
+    var combinationSum = function(arr, target) {
+        debugger
+       var res = [];
+       for (var i = 0; i < arr.length; i++) {
+           var left = target - arr[i];
+           if(left===0){
+            res.push(arr[i])
+           }else if(left > 0){
+            debugger
+            var arr1 = combinationSum(arr.slice(i),left);
+            res = res.concat(
+                arr1.map(item=>[arr[i]].concat(item))
+                )
+           }
+       }
+       return res;
+    };
+    console.log(combinationSum([4,5],8))
+    </script>
+</body>
+
+</html>

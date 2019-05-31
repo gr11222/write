@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    var arr = [10, 8, 5];
+    var value = [5, 4, 1]; //每个物品的价值  
+    var CurWeight = 0; //当前放入背包的物品总重量  
+    var CurValue = 0; //当前放入背包的物品总价值  
+    var BestValue = 0; //最优值；当前的最大价值，初始化为0  
+    var total = 16;
+    function backtrack(num) {
+        // body... 
+        var rearr = [];
+        if (num > arr.length) {
+            //如果找到了一个更优的解  
+            if (CurValue > BestValue) {
+                //保存更优的值和解  
+                BestValue = CurValue;
+            }
+        }
+        else{
+          for (var i = 0; i < arr.length; i++) {
+          	var target = total-arr[i];
+          	if(target < 0){
+          	}else{
+
+          	}
+          }
+        }
+    }
+    </script>
+</body>
+
+</html>

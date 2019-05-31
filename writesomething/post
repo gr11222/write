@@ -1,0 +1,29 @@
+$.ajax({
+		type: "post",
+		dataType: 'json',
+		url: "/DevOpsNoSpring/servlet/DevOpsService?cmd=DevOpsMyMeetingBasicInfoSearchCmd",
+		contentType: "application/text,charset=utf-8",
+		data: funGetInfoPara(),
+		success: function(msg) {
+			loadingStop();
+			console.log("查询信息返回值=" + JSON.stringify(msg));
+			// $("#ptcontent").html("");
+			total = msg.totalNumber;
+			var totalPage = Math.ceil(parseInt(total) / data_number);
+			total_page = totalPage;
+			if (totalPage === 0) {
+				totalPage = 1;
+			}
+			$("#pageTotalInfo").html("第 " + curren_page + " 页/共 " + totalPage + " 页");
+			createInfos(msg);
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			loadingStop();
+			var xmlRequest = XMLHttpRequest.status;
+			if (xmlRequest == "401") {
+				windowStart("当前用户无查询信息权限", false);
+			} else {
+				windowStart("查询信息失败", false);
+			}
+		}
+	})

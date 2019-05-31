@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var a = Symbol();
+		class obj{
+			constructor(){
+				this[a] = "name"
+			}
+			get(){
+				console.log(this[a])
+			}
+		}
+		new obj().get()
+	</script>
+</body>
+</html>

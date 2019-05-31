@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    /**
+     * @param {number[]} candidates
+     * @param {number} target
+     * @return {number[][]}
+     */
+    var combinationSum = function(candidates, target) {
+        var res = [];
+        candidates = candidates.sort();
+        for (var i = 0; i < candidates.length; i++) {
+            if (candidates[i] > target) {
+                candidates = candidates.splice(0, i);
+                break;
+            }
+        }
+
+        res = (function fn(x, target) {
+            debugger
+            var arr = [];
+            for (var i = x; i < candidates.length; i++) {
+                var left = target - candidates[x];
+                if (left == 0) {
+                    arr.push([candidates[x]])
+                } else if (left > 0) {
+                    arr = arr.concat(
+                        fn(x, left).map(arr1 => [candidates[x]].concat(arr1))
+                    )
+                }
+                x++
+            }
+            return arr
+        })(0, target)
+        return res
+    };
+    console.log(combinationSum([2, 3, 6, 7], 7))
+    </script>
+</body>
+
+</html>

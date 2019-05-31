@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+		#container{margin-top: 10px;overflow: hidden;font-size: 20px;}
+		#innerbox1{margin: 10px 0;overflow: auto;}
+		#innerbox2{margin: 10px 0;overflow: auto;}
+	</style>
+</head>
+<body>
+	<!-- 
+	在CSS当中，相邻的两个盒子（可能是兄弟关系也可能是祖先关系）的外边距可以结合成一个单独的外边距。这种合并外边距的方式被称为折叠，并且因而所结合成的外边距称为折叠外边距。折叠的结果按照如下规则计算：
+
+	1、两个相邻的外边距都是正数时，折叠结果是它们两者之间较大的值。
+	2、两个相邻的外边距都是负数时，折叠结果是两者绝对值的较大值。
+	3、两个外边距一正一负时，折叠结果是两者的相加的和。 
+	-->
+	<div id="container">
+		<div class="innerbox" id="innerbox1">container1</div>
+		<div style="overflow: auto">
+			<!-- 所属不同BFC 外边距不折叠 -->
+			<div class="innerbox" id="innerbox2">container2</div>
+		</div>
+	</div>
+</body>
+</html>

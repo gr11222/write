@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var a=0,b=1;
+		function fn(){
+			if(b>1000)
+				return
+			[a,b] = [b,a+b]
+			console.log(a)
+			fn()
+		}
+		fn()
+	</script>
+</body>
+</html>

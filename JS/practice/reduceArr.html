@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    var arr = [1, 2, [3, 4, 5, [6, 7], 8], 9, 10, [11, [12, 13]]];
+    // var arr = [1, 2, [3]];
+
+    function fn(arr) {
+        var res = [];
+        var fn1 = function(arr) {
+            arr.forEach(function(item, index) {
+                if (Array.isArray(item)) {
+                    fn1(item)
+                } else {
+                    res.push(item)
+                }
+            });
+        }
+        fn1(arr)
+        return res;
+    }
+
+    var arrs = [1, ['3', 'we', [4,5]]];
+
+    function jiangwei5(arrs) {
+    	debugger
+        for (var i = 0; i < arrs.length; i++) {
+            if (arrs[i] instanceof Array) {
+            	debugger
+                arrs[i] = jiangwei5(arrs[i]);
+            }
+        }
+        return Array.prototype.concat.apply([], arrs);
+    }
+    jiangwei5(arrs); //[1, "3", "we", 42, 0, 33, 55, 10, 331, 15, 34]
+    const flatten = array => array.reduce((acc, cur) => (Array.isArray(cur) ? [...acc, ...flatten(cur)] : [...acc, cur]), [])
+    // console.log(fn(arr))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body>
+	<div id="box">
+		Demo
+	</div>
+	<script src="http://static.runoob.com/assets/react/react-0.14.7/build/react.min.js"></script>
+	<script src="http://static.runoob.com/assets/react/react-0.14.7/build/react-dom.min.js"></script>
+	<script src="http://static.runoob.com/assets/react/browser.min.js"></script>
+
+	<script type="text/babel">
+	class Game extends React.Component {
+			constructor() {
+				super()
+			}
+			a(num,e){
+				console.log(num)
+				console.log(e)
+			}
+			render() {
+				return (
+					<div className="dasd" onClick={(e)=>{this.a(1,e)}}   tabIndex= "dasd">26515</div>
+				)
+			}
+		}
+	ReactDOM.render(  
+		<div><Game/></div>,	
+		document.getElementById('box')
+	);
+		
+	</script>
+</body>
+
+</html>

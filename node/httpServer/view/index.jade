@@ -1,0 +1,11 @@
+doctype
+html(lang="en")
+  head
+    title= pageTitle
+  body
+    h1 LIST
+    ul
+        each item in files
+            li 
+                a(href=title+'/'+item)=item
+                    

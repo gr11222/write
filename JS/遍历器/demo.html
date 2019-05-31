@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function* test(){
+			var a = yield (callback)=>{setTimeout(function(){console.log(1);callback()},1000)};
+			console.log(a)
+			var b = yield (callback)=>{setTimeout(function(){console.log(2);callback()},1000)};
+			console.log(b)
+		}
+		var run = test();
+		var r1 = run.next()
+		console.log(r1)
+		r1.value(function(){
+			var r2 = run.next("yii");
+			r2.value(function(){
+				var r2 = run.next("yii2");
+			})
+		})
+	</script>
+</body>
+</html>

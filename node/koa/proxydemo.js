@@ -1,0 +1,10 @@
+const Koa = require('koa')
+const app = new Koa()
+const logger = require('koa-logger')
+const serve = require('koa-static')
+const proxy = require('koa-better-http-proxy')
+
+app.use(logger())
+app.use(serve('.'))
+app.use(proxy('localhost:3000'))
+app.listen(80)

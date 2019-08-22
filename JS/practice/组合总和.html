@@ -15,7 +15,7 @@
      */
     var combinationSum = function(candidates, target) {
         var res = [];
-        candidates = candidates.sort();
+        candidates = candidates.sort((a,b)=>a-b);
         for (var i = 0; i < candidates.length; i++) {
             if (candidates[i] > target) {
                 candidates = candidates.splice(0, i);
@@ -41,7 +41,7 @@
         })(0, target)
         return res
     };
-    console.log(combinationSum([2, 3, 6, 7], 7))
+    console.log(combinationSum([1,1,2, 3, 6, 7], 7))
     </script>
 </body>
 

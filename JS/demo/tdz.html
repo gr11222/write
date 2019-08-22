@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var foo = 1;
+		(function () {
+		  foo = 2;
+		  function foo () {}
+
+		  console.log(foo);
+		})()
+
+		console.log(foo);
+		// =====================>>>>
+		var foo = 1;
+		(function () {
+		  var foo;
+		  function foo () {
+		  }
+
+		  foo = 2;
+		  console.log(foo);
+		})()
+
+		console.log(foo);
+
+		// bind
+		function foo () {
+		  console.log(this.a);
+		}
+
+		const o1 = { a: 3 };
+		const o2 = { a: 4 };
+
+		foo.bind(o1).bind(o2)();
+		//     3          bind 为硬绑定，第一次绑定后 this 无法再次绑定。
+
+	</script>
+</body>
+</html>

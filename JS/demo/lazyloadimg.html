@@ -1,0 +1,24 @@
+!<ul>
+	<li><img src="./img/default.png" data="./img/1.png" alt=""></li>
+	<li><img src="./img/default.png" data="./img/2.png" alt=""></li>
+	<li><img src="./img/default.png" data="./img/3.png" alt=""></li>
+	<li><img src="./img/default.png" data="./img/4.png" alt=""></li>
+	<li><img src="./img/default.png" data="./img/5.png" alt=""></li>
+	<li><img src="./img/default.png" data="./img/6.png" alt=""></li>
+	<li><img src="./img/default.png" data="./img/7.png" alt=""></li>
+	<li><img src="./img/default.png" data="./img/8.png" alt=""></li>
+</ul>
+<script type="text/javascript">
+	let imgs =  document.querySelectorAll('img')
+	// 窗口可视区高度
+	let clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+	// img 距离窗口可视区顶部的距离 imgs[i].getBoundingClientRect().top
+	function lazyLoadImg () {
+	    for (let i = 0; i < imgs.length; i ++) {
+	        if((imgs[i].getBoundingClientRect().top + imgs[i].height)>=0&&imgs[i].getBoundingClientRect().top < clientHeight ){
+	            imgs[i].src = imgs[i].getAttribute('data')
+	        }
+	    }      
+	}
+	window.addEventListener('scroll', lazyLoadImg);
+</script>

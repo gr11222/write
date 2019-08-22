@@ -17,7 +17,7 @@ module.exports = async function (req, res, filepath) {
         } else if (stat.isDirectory()) {
             const files = await promisify(fs.readdir)(filepath);
             console.log(path.relative(config.path, filepath));
-            res.statusCode = 200;
+            res.statusCode = 200;   
             res.setHeader('content-type', 'text/html');
             var data = fs.readFileSync("./view/index.jade", 'utf-8');
             var fn = jade.compile(data);

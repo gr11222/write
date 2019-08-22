@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var obj = {};
+		function outFun (){
+		    var a = 0;
+		    return function innerFun(b){
+		        a+=b;
+		        return a;
+		    }
+		}
+		setTimeout(function (){
+		    obj.newFunc = outFun();
+		    console.log(obj.newFunc(1)); //1
+		},3000);
+		setTimeout(function (){
+			var b = outFun();
+		    console.log(b(2)); // 3
+		},6000);
+		setTimeout(function (){
+		    obj.newFunc = null;
+		    console.log('clean'); //clean
+		},9000);
+
+	</script>
+</body>
+</html>

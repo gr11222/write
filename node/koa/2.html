@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    async function fn1(param) {
+      await new Promise(res => {
+        setTimeout(() => {
+          console.log(param)
+          res()
+        }, 3000);
+      });
+    }
+    async function fn2(param) {
+      console.log(3)
+      await (() => { })();
+      console.log(4)
+    }
+    for (let i = 0; i < 10; i++) {
+      fn1(i)
+    }
+    setTimeout(() => {
+      console.log(22222)
+    }, 4000);
+
+  </script>
+</body>
+
+</html>

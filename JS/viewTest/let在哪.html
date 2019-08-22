@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		const a = 123;
+		function abcd() {
+		    console.log(a);  // abcd函数的作用域能访问到a
+		};
+		console.dir(abcd);// 可以在方法的[[Scopes]] 属性中，看到变量a
+		// const、let 这类都是，属于声明性环境记录，“Declarative Environment Records” ，和函数、类这些一样，在单独的存储空间。
+		// var这类，属于对象性环境记录，“object environment record”，会挂载到某个对象上，也会沿着原型链去向上查找
+		// 说明const、let声明变量不挂载到对象上，但是在全局的活动对象中能访问到let、const 声明记录，也就是作用域链那边没问题
+
+		for(var item in abcd){
+			console.log(item)
+		}
+	</script>
+</body>
+</html>

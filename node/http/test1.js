@@ -1,27 +1,32 @@
-const http = require('http')
-const url = require('url')
-
-const server = http.createServer((req,res)=>{
-	if (req.url === '/favicon.ico') {
-	    return
-	}
-	// console.log(url.parse(req.url));
-	http.request('http://localhost:9999/',function(data){
-		console.log(data)
-	})
-	res.write('4514665');
-	res.end();
-}).listen(1)
-
-process.on('exit',(code)=>{
-	console.log(code)
-})
-
-const server2 = http.createServer((req,res)=>{
-	if (req.url === '/favicon.ico') {
-	    return
-	}
-	// console.log(url.parse(req.url));
-	res.write('55555');
-	res.end();
-}).listen(9999)
+var http = require('http');  
+  
+var qs = require('querystring');  
+  
+var data = {  
+    a: 123,  
+    time: new Date().getTime()};//这是需要提交的数据  
+  
+  
+var content = qs.stringify(data);  
+  
+var options = {  
+    hostname: '127.0.0.1',  
+    port: 8888,  
+    path: '',  
+    method: 'GET'  
+};  
+  
+var req = http.request(options, function (res) {  
+    console.log('STATUS: ' + res.statusCode);  
+    console.log('HEADERS: ' + JSON.stringify(res.headers));  
+    res.setEncoding('utf8');  
+    res.on('data', function (chunk) {  
+        console.log('BODY: ' + chunk);  
+    });  
+});  
+  
+req.on('error', function (e) {  
+    console.log('problem with request: ' + e.message);  
+});  
+  
+req.end(); 

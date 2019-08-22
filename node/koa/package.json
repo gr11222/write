@@ -1,0 +1,23 @@
+{
+  "name": "koa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "dependencies": {
+    "http-proxy-middleware": "^0.19.1",
+    "jquery": "^3.4.1",
+    "koa": "^2.7.0",
+    "koa-better-http-proxy": "^0.2.4",
+    "koa-logger": "^3.2.1",
+    "koa-session": "^5.12.2",
+    "koa-static": "^5.0.0",
+    "koa2-connect": "^1.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "go": "node test.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

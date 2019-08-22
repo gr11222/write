@@ -7,7 +7,7 @@
 <body>
 	<script type="text/javascript">
 		var threeSum = function(nums) {
-			nums = nums.sort();
+			nums = nums.sort((a,b)=>a-b);
 		   var arr = [];
            for (var i = 0; i < nums.length-2; i++) {
            	if(i>0&&nums[i]==nums[i-1])

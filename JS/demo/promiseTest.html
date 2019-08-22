@@ -23,6 +23,7 @@
         // 失败存放法数组
         _this.onRejectedCallbacks = [];
         var resolve = function(data) {
+        	console.log(_this.onResolvedCallbacks)
         	debugger
             _this.state = RESOLVED;
             _this.value = data;
@@ -38,6 +39,7 @@
         } catch (e) {
             reject(e)
         }
+        console.log('promise')
     }
     PromiseTest.prototype.then = function(onFulfilled, onRejected) {
     	debugger
@@ -79,6 +81,7 @@
 
     var pro = new PromiseTest(function(res) {
         // setTimeout(() => { res(1) }, 1000)
+
         res(1)
     });
     pro.then(data => { console.log(data) })

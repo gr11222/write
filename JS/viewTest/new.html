@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function create(){
+			let obj = new Object();
+			Constructor = [].shift.call(arguments);//shift会改变数组 ，去除第一个值
+			obj.__proto__ = Constructor.prototype;
+			let ret = Constructor.apply(obj,arguments);
+			return typeof ret === 'object'?ret:obj
+		}
+	</script>
+</body>
+</html>

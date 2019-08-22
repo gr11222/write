@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function fn(arr){
+			if(!arr.length)
+				return
+			for (var i = 0; i < arr.length-1; i++) {
+				for (var j = 0; j < arr.length-i-1; j++) {
+					if(arr[j]>arr[j+1])
+						[arr[j],arr[j+1]] = [arr[j+1],arr[j]]
+				}
+			}
+			return arr
+		}
+		console.log(fn([10,2,3,2,11,44,2,5,11,6,222,4]))
+	</script>
+</body>
+</html>

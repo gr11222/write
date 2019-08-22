@@ -27,18 +27,18 @@
 
 
     var combinationSum = function(arr, target) {
-        debugger
+       debugger
        var res = [];
        for (var i = 0; i < arr.length; i++) {
            var left = target - arr[i];
            if(left===0){
             res.push(arr[i])
            }else if(left > 0){
-            debugger
-            var arr1 = combinationSum(arr.slice(i),left);
-            res = res.concat(
+              debugger
+              var arr1 = combinationSum(arr.slice(i),left);
+              res = res.concat(
                 arr1.map(item=>[arr[i]].concat(item))
-                )
+              )
            }
        }
        return res;

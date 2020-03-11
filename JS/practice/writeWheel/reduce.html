@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var arr = [11,12,13]
+		Array.prototype.myReduce = function(fn,initialValue){
+			var arr = Array.prototype.slice.call(this);
+			var res ,startIndex;
+			res = initialValue?initialValue:arr[0];
+			startIndex = initialValue?0:1;
+			for (var i = startIndex; i < arr.length; i++) {
+				res = fn.call(null,res,arr[i],i,this)
+			}
+			return res
+		}
+		var resault = arr.myReduce((total,current)=>total+=current)
+		console.log(resault)
+	</script>
+</body>
+</html>

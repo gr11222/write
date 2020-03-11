@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		Object.prototype.create = function(proto){
+			function F(){};
+			F.prototype =proto;
+			F.prototype.constructor = F;
+			return new F();
+		}
+	</script>
+</body>
+</html>

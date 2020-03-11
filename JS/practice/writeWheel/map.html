@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var arr = [11,12,13];
+		Array.prototype.myMap = function(fn,context){
+			var arr = Array.prototype.slice.call(this)
+			var resault = []
+			for (var i = 0; i < arr.length; i++) {
+				resault.push(fn.call(context,arr[i],i,this))
+			}
+			return resault;
+		}
+		var a = arr.myMap((item,index)=>{
+			console.log(index,item)
+			return item+"===="
+		})
+		console.log(a)
+	</script>
+</body>
+</html>

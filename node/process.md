@@ -1,3 +1,8 @@
+node based on libuv
+
+
+
+
 ---------------beforeExit 
 //对于导致显式终止的条件，不会触发 'beforeExit' 事件，例如调用 process.exit() 或未捕获的异常。
 

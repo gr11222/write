@@ -4,6 +4,7 @@
   "description": "",
   "main": "test.js",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
     "http-proxy-middleware": "^0.19.1",
     "jquery": "^3.4.1",
     "koa": "^2.7.0",

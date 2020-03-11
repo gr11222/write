@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		Function.prototype.myCall = function(context,...args){
+			var func = this;
+			var fn = Symbol("fn");
+			context[fn] = func;
+			var res = context[fn](...args);
+			delete context[fn];
+			return res;
+		}
+		console.log(Array.prototype.slice.call(document.getElementsByTagName('body')))
+	</script>
+</body>
+</html>

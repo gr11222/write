@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		Function.prototype.bind = function(context,...args){
+			let self = this;
+			let fBound = function(){
+				// this instanceof fBound 为true表示构造函数情况 new func.bind(obj)
+				return self.call(this instanceof fBound ?this:context||window,...args)
+			}
+			fBound.prototype = Object.create(this.prototype)
+			return fBound
+		}
+
+		function fn(...args){
+			console.log(this)
+			console.log(args)
+		}
+		fn.bind({name:1},1,2,3,4,5)()
+	</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function fn(str){
+			var obj = {
+				"]":"[",
+				")":"(",
+				"}":"{"
+			};
+			var objArrL = ["(","{","["];
+			var objArrR = [")","}","]"];
+			var arr = [];
+			for (var i = 0; i < str.length; i++) {
+				// debugger
+				if(objArrL.indexOf(str[i])!=-1)
+					arr.push(str[i])
+				if(objArrR.indexOf(str[i])!=-1){
+					if(obj[str[i]]!==arr[arr.length-1]){
+						return false
+					}
+					arr.pop()
+				}
+			}
+			if(!arr.length){
+				return true
+			}
+			return false
+		}
+		// console.log(fn("(){([)}"))
+	</script>
+</body>
+</html>

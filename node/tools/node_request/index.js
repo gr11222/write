@@ -4,6 +4,7 @@ const fs = require("fs")
 
 let reqPro = (data) => new Promise((resolve) => {
   let content = qs.stringify(data)
+  let str = '';
   let options = {
     hostname: "192.168.0.1",
     port: 80,
@@ -15,7 +16,10 @@ let reqPro = (data) => new Promise((resolve) => {
   var req = http.request(options, (res) => {
     res.setEncoding('utf8');
     res.on('data', (chunk) => {
-      resolve(chunk)
+      str += chunk
+    })
+    res.on('end', () => {
+      resolve(str)
     })
   })
   req.write(content)

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function fn(arr){
+			// debugger
+			if(arr.length<2){
+				return arr
+			}
+			let point = arr.splice([arr.length-1],1)[0];
+			let left = [];
+			let right = [];
+			arr.forEach((item)=>{
+				item<=point?left.push(item):false;
+				item>point?right.push(item):false;
+			})
+			return fn(left).concat([point],fn(right))
+		}
+		var arr = fn([1,2,9,3,4,5])
+		console.log(arr)
+
+	</script>
+</body>
+</html>

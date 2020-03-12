@@ -2,6 +2,10 @@
 const Koa = require("koa");
 const logger = require("koa-logger");
 const session = require("koa-session");
+
+const https = require("https");
+const fs = require("fs");
+const enforceHttps = require("koa-sslify");
 // 创建服务 
 function fn() {
 	return new Promise((resolve, reject) => {
@@ -12,6 +16,12 @@ function fn() {
 	});
 }
 const app = new Koa();
+// console.dir(enforceHttps)
+app.use(enforceHttps.default());
+const options = {
+	key: fs.readFileSync('./privatekey.pem'),
+  	cert: fs.readFileSync('./certificate.pem')
+}
 app.keys = ['session']
 app.use(logger())
 app.use(session(app))
@@ -34,4 +44,5 @@ app.use(async (ctx, next) => {
 // 	console.log(6);
 // });
 // 监听服务 
-app.listen(3000);
+app.listen(80);
+https.createServer(options,app.callback()).listen(443)

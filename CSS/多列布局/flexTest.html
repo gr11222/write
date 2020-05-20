@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0s">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 父容器 -->
+  <!-- justify-content -->
+  <!--位置： center flex-start flex-end -->
+  <!--分布： space-around  space-between-->
+  <!-- align-items -->
+  <!--位置： center flex-start flex-end -->
+  <!--基线： baseline -->
+  <!--拉伸： stretch(不指定高度)  -->
+  <div style="display: flex;height: 200px;align-items: center;justify-content: flex-start;">
+    <div style="background: red;width: 50px;">1</div>
+    <div style="background: yellow;width: 50px;">2</div>
+    <div style="background: pink;width: 50px;">3</div>
+    <div style="background: purple;width: 50px;">4</div>
+  </div>
+  <!-- 子容器 -->
+  <!-- flex -->
+  <!-- 单个值 -->
+  <!-- 无单位：flex-grow -->
+  <!-- 宽/高： flex-basis(覆盖width) -->
+  <!-- 两个值 -->
+  <!-- flex-grow|flex-basis : 1 10px -->
+  <!-- flex-grow|flex-shrink : 1 1 -->
+  <!-- 三个值 -->
+  <!-- flex-grow|flex-shrink|flex-basis : 1 1 10%-->
+  <!-- flex-shrink的默认值为1，如果没有显示定义该属性，将会自动按照默认值1在所有因子相加之后计算比率来进行空间收缩。
+
+本例中A、B、C 显式定义了 flex-shrink 为 1，D、E 定义了 flex-shrink 为 2，所以计算出来总共将剩余空间分成了 7 份，其中 A、B、C 占 1 份，D、E 占 2 份，即1:1:1:2:2
+
+我们可以看到父容器定义为 500px，子项被定义为 120px，子项相加之后即为 600 px，超出父容器 100px。那么超出的 100px 需要被 A、B、C、D、E 消化 通过收缩因子，所以加权综合可得 100*1+100*1+100*1+100*2+100*2=700px。
+
+于是我们可以计算 A、B、C、D、E 将被移除的溢出量是多少：
+A 被移除溢出量：(100*1/700)*100，即约等于14px
+B 被移除溢出量：(100*1/700)*100，即约等于14px
+C 被移除溢出量：(100*1/700)*100，即约等于14px
+D 被移除溢出量：(100*2/700)*100，即约等于28px
+E 被移除溢出量：(100*2/700)*100，即约等于28px -->
+  <div style="display: flex;height: 200px;align-items: center;justify-content: flex-start;width: 10px;">
+    <div style="background: red;width: 50px;align-self:flex-start;">1</div>
+    <div style="background: yellow;width: 50px;flex-basis:10px;">2</div>
+    <div style="background: pink;flex:1;flex-shrink:20;">3</div>
+    <div style="background: purple;width: 50px;flex:1;">4</div>
+  </div>
+  <!-- align-self -->
+  <!-- 覆盖父align-items -->
+
+  <!-- 轴 -->
+  <!-- flex-direction -->
+  <!-- row -->
+  <!-- row-reverse -->
+  <!-- column -->
+  <!-- column-reverse -->
+  <div
+    style="display: flex;height: 200px;align-items: center;justify-content: flex-start;width: 10px;flex-direction:column;">
+    <div style="background: red;width: 50px;">1</div>
+    <div style="background: yellow;width: 50px;flex-basis:10px;">2</div>
+    <div style="background: pink;flex:1;">3</div>
+    <div style="background: purple;width: 50px;flex:1;">4</div>
+  </div>
+
+  <!-- 父容器 -->
+  <!-- flex-wrap -->
+  <!-- nowrap -->
+  <!-- wrap -->
+  <!-- wrap-reverse -->
+  <!-- flex-flow -->
+  <!-- flex-direction 与 flex-wrap 的组合 -->
+  <!-- align-content(多轴对齐) -->
+  <!-- 与justify一致 -->
+  <!-- align-items设置align-content: stretch无效 -->
+
+  <!-- 子容器 -->
+  <!-- order -->
+  <!-- 排序 -->
+  <div
+    style="display: flex;height: 200px;align-items: flex-start;justify-content: flex-start;width: 200px;flex-wrap: wrap;align-content: stretch;">
+    <div style="background: red;width: 50px;flex-basis:100px;">1</div>
+    <div style="background: yellow;width: 50px;flex-basis:100px;">2</div>
+    <div style="background: pink;flex:1;flex-basis:100px;">3</div>
+    <div style="background: purple;width: 50px;flex:1;flex-basis:100px;">4</div>
+  </div>
+  <script></script>
+</body>
+
+</html>

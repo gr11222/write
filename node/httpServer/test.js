@@ -4,7 +4,7 @@ const fs = require('fs');
 const zlib = require('zlib');
 
 const postData = querystring.stringify({
-    'msg': '你好世界'
+    'msg': ''
 });
 
 const options = {

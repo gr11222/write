@@ -1,0 +1,11 @@
+{
+  "files.associations": {
+    "*.extension": "language"
+  },
+  "workbench.editor.closeEmptyGroups": false,
+  "emmet.triggerExpansionOnTab": true,
+  "files.associations": {
+    "*.js": "html",
+    "*.vue": "html"
+  }
+}

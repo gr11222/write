@@ -38,7 +38,7 @@
 
         _this.reject = function(reason) {
             setTimeout(() => { // 异步执行，保证执行顺序
-                if (_this.currentState === PENDING) {
+                if (_this.currentState === PENDING) {   
                     _this.currentState = REJECTED;
                     _this.value = reason;
                     _this.rejectedCallbacks.forEach(cb => cb());

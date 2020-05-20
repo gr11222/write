@@ -1,11 +1,11 @@
-function Parents(){
+function Parents() {
 	this.init()
 }
-Parents.prototype.init = function(argument){
+Parents.prototype.init = function (argument) {
 	console.log('Parents init')
 };
 
-function Children(){
+function Children() {
 	Parents.call(this)
 }
 //--------------------------------------------------------1
@@ -18,10 +18,10 @@ function Children(){
 // Children.prototype.constructor = Children;
 //--------------------------------------------------------2
 Children.prototype = Object.create(Parents.prototype, {
-	constructor:{
-		value:Children,
-		enumerable:false,
+	constructor: {
+		value: Children,
+		enumerable: false,
 		writable: true,
-    	configurable: true
+		configurable: true
 	}
 })

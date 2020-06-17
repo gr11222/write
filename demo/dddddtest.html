@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+
+		var fn1 = (function(){
+			return new Promise(resolve=>{
+				setTimeout(()=>{console.log(65656556556)})
+				console.log('fn1')
+				resolve()
+			})
+		})
+
+		var fn2 = (function(){
+			return new Promise(resolve=>{
+				console.log('fn2')
+			})
+		})
+
+		var fn3 = (function(){
+			return new Promise(resolve=>{
+				fn1().then(()=>{console.log("fn4")})
+				fn2()
+				console.log('fn3')
+			})
+		})
+		fn3()
+		console.log(222222222)
+	</script>
+</body>
+</html>

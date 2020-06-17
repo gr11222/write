@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>刮刮抽奖</title>
+	<style type="text/css"></style>
+</head>
+ <style type="text/css">
+ #div1{
+ 	width: 120px;
+ 	height: 40px;
+ 	color: red;
+ 	position: absolute;
+ 	text-align: center;
+    line-height: 40px;
+ 	font-size: 18px;
+ 	font-weight: bold;
+ }
+ #mycanvas{
+ 	position: absolute;
+ }
+ body{
+    -moz-user-select:none;/*火狐*/
+    -webkit-user-select:none;/*webkit浏览器*/
+    -ms-user-select:none;/*IE10*/
+    -khtml-user-select:none;/*早期浏览器*/
+    user-select:none;
+}
+ </style>
+<body>
+    <div id="div1">恭喜您中奖了</div>
+	<canvas id="mycanvas" width="120" height="40"></canvas>
+	<script type="text/javascript">
+        var canvas=document.getElementById('mycanvas');
+	var ctx=canvas.getContext('2d');
+	ctx.fillStyle="gray";
+        ctx.fillRect(0,0,120,40);
+        canvas.onmousedown=function(){
+            canvas.onmousemove=function(e){
+              ctx.clearRect(e.offsetX,e.offsetY,5,5);
+            }
+        }
+        document.onmouseup=function(){
+            canvas.onmousemove=function(){
+            }
+        }
+	</script>
+</body>
+</html>

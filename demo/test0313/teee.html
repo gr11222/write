@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div>
+		div
+		<span>
+			spa
+		</span>
+	</div>
+	<script type="text/javascript">
+		let div = document.getElementsByTagName("div")[0];
+		let span = document.getElementsByTagName("span")[0];
+		
+		window.HTMLElement.prototype.on = function(event,target,fn){
+			if(typeof target === "function")
+				fn = target;
+			this.addEventListener(event,function(e){ 
+				if(typeof target === "string"){
+					if(e.target.tagName.toLowerCase()==target){
+
+					}else{
+						return
+					}
+				}
+				e = e||Event;
+				let el = e.target; 
+				while(el){
+					if(el.tagName.toLowerCase() === target){
+						break;
+					}else if(el.tagName.toLowerCase() === this.tagName.toLowerCase()){
+						break;
+					}else{
+						el = el.parentNode
+					}
+				}
+				fn.call(el,e)
+				console.dir(new Event(el))
+				
+			})
+		}
+		span.on('click','i',function(e){
+			e.stopImmediatePropagation()
+			console.dir(this)
+		})
+		span.on('click',function(){
+			console.log(2)
+			// console.log(this)
+		})
+		let i = document.createElement("i");
+		i.innerHTML = "n";
+		span.appendChild(i)
+
+		// div.on("click",function(){
+		// 	console.log('898998')
+		// })
+	</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var shoeObj = {
+			list : [],
+			listen:function(fn){
+				this.list.push(fn)
+			},
+			trigger:function(){
+				console.log(this)
+				for (var i = 0; i < this.list.length; i++) {
+					this.list[i].apply(this,arguments)
+				}
+			}
+		};
+		shoeObj.listen(function(){console.log(1)})
+		shoeObj.trigger.apply(window)
+	</script>
+</body>
+</html>

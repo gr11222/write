@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		(async ()=>{
+			let i = 0;
+			while (1) {
+				// statement
+				i++;
+				await new Promise(res=>{
+					setTimeout(()=>{
+					console.log(i)
+					console.log(new Date().getMilliseconds())
+						res()
+					},1000)
+					
+				})
+			}
+		})()
+	</script>
+</body>
+</html>

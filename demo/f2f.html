@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css"></style>
+</head>
+<body>
+	<div id="box">
+		<box1></box1>
+		<box2></box2>
+	</div>
+	<template id='box1'>
+		<div style="border: 1px solid skyblue;">
+			<input type="text" name="" v-model='theData'><br>
+			<button type="button" >tijiao</button>
+			<input type="text" name="" v-model='theData'><br>
+		</div>
+	</template>
+	<template id='box2'>
+		<div style="border: 1px solid red;">
+			<input type="text" name="" v-model='thedata'>
+		</div>
+	</template>
+	<script type="text/javascript" src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+	<script type="text/javascript">
+		var vm = new Vue({})
+		var box1 = {
+			template:'#box1',
+			data:function(){
+				return{
+					theData:'box1'
+				}
+			},
+			methods:{
+				box1C:function(){
+					vm.$emit('change',this.theData)
+				}
+			},
+			created:function(){
+				vm.$on('change',function(payload){
+					this.theData = payload
+				}.bind(this))
+			},
+			watch:{
+				theData:function(){
+					vm.$emit('change',this.theData)
+				}
+			}
+		}
+		var box2 = {
+			template:'#box2',
+			methods:{
+
+			},
+			data:function(){
+				return{
+					thedata : 'box2'
+				}
+			},
+			created:function(){
+				vm.$on('change',function(payload){
+					this.thedata = payload
+				}.bind(this))
+			},
+			watch:{
+				thedata:function(){
+					vm.$emit('change',this.thedata)
+				}
+			}
+		}
+		new Vue({
+			el:'#box',
+			components:{
+				'box1':box1,
+				'box2':box2,
+			}
+
+		})
+	</script>
+</body>
+</html>

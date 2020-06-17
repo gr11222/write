@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn">download</button>
+	<script type="text/javascript">
+		window.onload = function(){
+			// console.log("loading")
+			alert(1)
+		}
+		window.load = function(){
+			console.log("complete")
+		}
+		document.getElementById("btn").onclick = function(){
+			location.href = "../javaee.rar";
+		}
+	</script>
+</body>
+</html>

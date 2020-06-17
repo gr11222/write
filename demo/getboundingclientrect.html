@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{margin: 0;padding: 0}
+	</style>
+</head>
+<body>
+	<div id="box" style="height: 10px;width: 10px;margin-left: 0px"></div>
+	<div id="box2" style="height: 10px;width: 10px;margin-left: 10px"></div>
+	<script type="text/javascript">
+		console.log(document.getElementById("box").getBoundingClientRect())
+		console.log(document.getElementById("box2").getBoundingClientRect())
+		var obj = new Object()
+		obj["name"]=1;
+		console.log(obj)
+	</script>
+</body>
+</html>

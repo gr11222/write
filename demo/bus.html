@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css"></style>
+</head>
+<body>
+	<div id="box">
+		<father></father>
+		<children ></children>
+	</div>
+	<template id='father_box'>
+		<div style="border: 1px solid skyblue;">
+			{{adad}}
+			<input type="text" name="" v-model='theData'><br>
+		</div>
+	</template>
+	<template id='children_box'>
+		<div style="border: 1px solid red;">
+			props:{{thedata}} <br>
+			<input type="text" name="" v-model='thedata'>
+		</div>
+	</template>
+	<script type="text/javascript" src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+	<script type="text/javascript">
+		var bus = new Vue();
+		var children = {
+			template:'#children_box',
+			props:{
+				childData:{
+
+				}
+			},
+			methods:{
+				
+			},
+			data:function(){
+				return{
+					thedata : this.childData
+				}
+			},
+			watch:{
+				thedata:function(){
+					this.$emit('update:childData',this.thedata)
+					bus.$emit("a",this.thedata)
+				},
+				childData:function(){
+					this.thedata = this.childData
+				}
+			},
+			mounted:function(){
+			}
+		}
+		var father = {
+			template:'#father_box',
+			data:function(){
+				return{
+					theData:'init',
+					adad:'2'
+				}
+			},
+			methods:{
+
+			},
+			mounted:function(){
+				var that = this;
+				bus.$on("a",function(val,a){
+					that.adad = val
+					console.log(this)
+					console.log(that)	
+				})
+				console.log(this.$root.name)
+			}
+		}
+		var vm = new Vue({
+			data:{
+				name:"dsad"
+			},
+			el:'#box',
+			components:{
+				'father':father,
+				'children':children
+			}
+
+		})
+		
+	</script>
+</body>
+</html>

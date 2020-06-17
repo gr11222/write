@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// +function(){
+			setTimeout(()=>{console.log("timeout2");new Promise(res=>{
+				res('promise time')
+			}).then(data=>{console.log(data)})},0)
+			setTimeout(()=>{;new Promise(res=>{
+				res('promise time1')
+			}).then(data=>{console.log(data)});console.log("timeout")},0)
+			new Promise(res=>{
+				res('promise2')
+			}).then(data=>{console.log(data)})
+			new Promise(res=>{
+				res('promise1')
+			}).then(data=>{console.log(data)})
+		// }()
+		console.log('window')
+	</script>
+</body>
+</html>

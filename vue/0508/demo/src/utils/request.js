@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Message } from "element-ui";
-import qs from "qs"
+import qs from "qs";
 // import { delCookie } from "@/utils/cookie";
 
 const request = axios.create({
@@ -24,10 +24,10 @@ request.interceptors.response.use(
         message: response.data.ret,
         type: "error",
         duration: 5 * 1000,
-      })
-      return Promise.reject('')
+      });
+      return Promise.reject('');
     } else {
-      return response.data
+      return response.data;
     }
   },
   (err) => {

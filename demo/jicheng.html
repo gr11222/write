@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function Animal(name){
+			this.name = name || 'Animal';
+			  // 实例方法
+			this.sleep = function(){
+			  console.log(this.name + '正在睡觉！');
+			}
+		}
+		Animal.prototype = {
+			sleep:function(){
+				console.log('run');
+			}
+		}
+		var cat = function(){}
+		cat.prototype = new Animal()
+		cat.prototype.name = "das"
+		// cat.prototype.constructor = cat;
+		console.log(new cat().constructor==Animal.prototype.constructor)
+	</script>
+</body>
+</html>

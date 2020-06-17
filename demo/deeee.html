@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		setTimeout(()=>{console.log('3')})
+		new Promise(function(res){
+			res(1)
+		}).then(data=>{console.log("2")})
+		console.log('1')
+	</script>
+</body>
+</html>

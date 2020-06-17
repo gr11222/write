@@ -38,7 +38,7 @@ export default {
   .view-container {
     min-height: calc(100vh - 91px);
     padding: 5px 10px;
-  }
+  } 
 }
 .el-header {
   background-color: #b3c0d1;

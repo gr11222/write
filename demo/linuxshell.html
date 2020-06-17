@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+		.addline:after{content: '';background: #fff;color: red;border-left: 5px solid #fff;margin-left: 5px;animation: ani 2s infinite;}
+		@keyframes ani{
+			0% {border-color: #fff}
+			70% {border-color: #000}
+			100% {border-color: #000}
+		};
+	</style>
+</head>
+<body>
+	<div id="box" style="background: #000;width: 600px;height: 300px;">
+		<div><span id="tishi" class="addline" style="word-break: break-all;color:#fff;">[admin]#</span><span id="shuru" style="word-break: break-all;color:#fff;"></span><input id="shell_input" type="text" name="" style="outline: none;border:none;width: 100px;background: #000;"></div>
+		
+	</div>
+	<script
+  src="http://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		$("#box").on('click',function(){
+			$("#shell_input").focus()
+		})
+		$("#shell_input").on('blur',function(){
+			$("#tishi").removeClass('addline');
+		})
+		$("#shell_input").on('focus',function(){
+			$("#tishi").addClass('addline');
+		})
+		$("#shell_input").keydown(function(){
+			var content = $(this).val();
+			$("#shuru").append(content);
+			$(this).val('');
+		})
+	</script>
+</body>
+</html>

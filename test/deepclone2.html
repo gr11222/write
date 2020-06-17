@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function deepclone(obj){
+			let root = Object.create(Object.getPrototypeOf(obj));
+			let stack = [];
+			stack.push({
+				data:obj,
+				parent:root,
+				key:undefined
+			});
+			while(stack.length){
+				let item = stack.pop();
+				let parent = item.parent;
+				let data = item.data;
+				let key = item.key;
+				let type = item.type;
+				let res = parent;
+		        if (typeof key !== 'undefined') {
+		        	if(type === "array"){
+		        		res = parent[key] = [];
+		        	}else{
+		            	res = parent[key] = {};
+		        	}
+		        }
+
+				for (let i in data) {
+					if(data.hasOwnProperty(i)){
+						if(Object.prototype.toString.call(data[i])==='[object Array]'){
+							stack.push({
+								data:data[i],
+								parent:res,
+								key:i,
+								type:"array"
+							})
+						}else if(Object.prototype.toString.call(data[i])==='[object Object]'){
+							stack.push({
+								data:data[i],
+								parent:res,
+								key:i
+							})
+						}else if(Object.prototype.toString.call(data[i])==='[object Function]'){
+							res[i] = eval("("+data[i].toString()+")")
+						}else{
+							res[i] = data[i]
+						}
+					}
+				}
+			}
+			return root
+		}
+
+		var obj1 = {
+			name:"obj1",
+			arr:[1,2,3],
+			obj:{
+				name:"obj2",
+				age:222,
+				arr:[1,2,{name:1}],
+			},
+			fn:function(){
+				console.log(111)
+			}
+		}
+		var obj2 = deepclone(obj1)
+		console.log(obj2)
+		console.log(obj1.fn===obj2.fn)
+		obj2.fn()
+	</script>
+</body>
+</html>

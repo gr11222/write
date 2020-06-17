@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function deepclone(obj){
+			let res = Object.create(Object.getPrototypeOf(obj));
+			for (let item in obj) {
+				if(obj.hasOwnProperty(item)){
+					if(typeof(item) === "object")
+						deepclone(obj[item])
+					else{
+						res[item] = obj[item]
+					}
+				}
+			}
+			return res
+		}
+		var obj1 = {
+			name:"obj1",
+			obj:{
+				name:"obj2"
+			}
+		}
+		var obj2 = deepclone(obj1)
+		console.log(obj2)
+
+		function clone(target) {
+		    if (typeof target === 'object') {
+		        let cloneTarget = {};
+		        for (const key in target) {
+		            cloneTarget[key] = clone(target[key]);
+		        }
+		        return cloneTarget;
+		    } else {
+		        return target;
+		    }
+		};
+
+		function clone(target) {
+		    if (typeof target === 'object') {
+		        let cloneTarget = Array.isArray(target) ? [] : {};
+		        for (const key in target) {
+		            cloneTarget[key] = clone(target[key]);
+		        }
+		        return cloneTarget;
+		    } else {
+		        return target;
+		    }
+		};
+
+
+	</script>
+</body>
+</html>

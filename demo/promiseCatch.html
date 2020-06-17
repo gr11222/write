@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		new Promise((r,r2)=>{setTimeout(
+			()=>{r2(new Error('test'));
+		},1000)})
+		.then(data=>{console.log(data)},data=>{console.log(data)})
+		.catch((err)=>{
+			console.dir(err)
+			return 1
+		})
+		.then(data=>{return Promise.reject(new Error('test'))})
+		.catch((err)=>{
+			console.dir(err)
+		}).then(data=>{console.log(data)})
+	</script>
+</body>
+</html>

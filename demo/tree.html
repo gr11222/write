@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{margin: 0;padding: 0}
+		li{
+			list-style: none;
+			padding: 3px 30px;
+			cursor: pointer;
+		}
+		#list>li{
+			position: relative;
+			padding: 3px 15px;
+		}
+		#list>li:after{
+			content: '';		
+			position: absolute;
+			top: 10px;
+			left: 0;
+			border-top: 8px solid #000;
+			border-left: 6px solid transparent;
+			border-right: 6px solid transparent;
+			border-bottom: 8px solid transparent;
+		}
+		#list>li.close:after{
+			transform: rotateZ(-90deg);
+			transform-origin: 50% 20%;
+			transition: all .3s
+		}
+	</style>
+</head>
+<body>
+	<ul id="list">
+		<li>字典类型
+			<ul>
+				<li>房屋户型</li>
+				<li>房屋状态</li>
+				<li>房屋用途</li>
+			</ul>
+		</li>
+	</ul>
+	<script
+  src="http://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		$("#list>li").on('click',function(){
+			$(this).toggleClass("close")
+			$(this).find("ul").slideToggle()
+		})
+		$("#list>li>ul").on('click',function(e){
+			e.stopPropagation();
+		})
+		var str = "1111"
+		$('body').html('<input type="text" value='+str+' />')
+	</script>
+</body>
+</html>

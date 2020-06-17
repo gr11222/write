@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id='box'>
+		<father></father>
+	</div>
+	<template id="tem">
+		<div>
+			<child @click.native="cli(222)">
+				<div slot='head' slot-scope='{ text }'>
+					father:<input type="text" name="" v-model= 'text'>
+
+					this is head2
+				</div>
+				<div style="color:red">{{name}}</div>
+				
+				<div slot='foot'>
+					this is foot
+				</div>
+			</child>
+		</div>
+	</template>
+	<template id="tem2">
+		<div style="border: 1px solid #000;">
+			<input type="text" name="" v-model = 'text'>
+			<slot name='head' :text='text'></slot>
+			body
+			<slot></slot>
+			<slot name='foot'></solt>
+		</div>
+	</template>
+	<script type="text/javascript" src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+	<script type="text/javascript">
+		var child = {
+			data:function()
+			{
+				return {
+					text:'222'
+				}
+			},
+			template:'#tem2'
+		}
+		var father = {
+			data:function(){
+				return{
+					name:"father"
+				}
+			},
+			template:'#tem'
+			,
+			components:{
+				'child':child
+			},
+			methods:{
+				cli:function(e){
+					console.log(event)
+				}
+			}
+		}
+		var vm = new Vue({
+			el:'#box',
+			components:{
+				'father':father
+			}
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		let obj1={
+		    a:222
+		};
+		let obj2={
+		    a:111,
+		    fn:function(){
+		        alert(this.a);
+		    }
+		}
+		obj2.fn.call(obj1);
+	</script>
+</body>
+</html>

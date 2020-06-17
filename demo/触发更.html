@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id='box'>
+		<father></father>
+	</div>
+	<template id="tem">
+		<div>
+			<button @click=fn1()>
+				click
+			</button>
+			<child :color="color"></child>
+		</div>
+	</template>
+	<template id="tem2">
+		<div :style="{color:localcolor}">
+			
+			{{localcolor}}
+		</div>
+	</template>
+	<script type="text/javascript" src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+	<script type="text/javascript">
+		var child = {
+			props:{
+				color:String
+			},
+			data:function()
+			{
+				return {
+					text:'222',
+					// localcolor:this.color
+				}
+			},
+			computed:{
+				localcolor:function(){
+					return this.color
+				}
+			},
+			watch:{
+				color:function(){
+					console.log(this.localcolor)
+				}
+			},
+			template:'#tem2',
+			mounted:function(){
+				console.log(this.localcolor)
+			}
+		}
+		var father = {
+			data:function(){
+				return{
+					color:"red"
+				}
+			},
+			template:'#tem'
+			,
+			components:{
+				'child':child
+			},
+			methods:{
+				fn1:function(arg){
+					this.color = "blue"
+				}
+			}
+		}
+		var vm = new Vue({
+			el:'#box',
+			components:{
+				'father':father
+			}
+		})
+	</script>
+</body>
+</html>

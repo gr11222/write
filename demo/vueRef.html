@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id='box'>
+		<father></father>
+	</div>
+	<template id="tem">
+		<div>
+			father
+			<child></child>
+		</div>
+	</template>
+	<template id="tem2">
+		<div style="border: 1px solid #000;">
+			child 
+		</div>
+	</template>
+	<script type="text/javascript" src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+	<script type="text/javascript">
+		var child = {
+			data:function()
+			{
+				return{
+				}
+			},
+			template:'#tem2',
+		
+			watch:{
+				
+			},
+			mounted:function(){
+				console.log(this.$parent.$parent)
+			}
+		}
+		var father = {
+			data:function(){
+				return{
+					age:0
+				}
+			},
+			template:'#tem'
+			,
+			components:{	
+				'child':child
+			}
+		}
+		
+		var vm = new Vue({
+			el:'#box',
+			components:{
+				'father':father
+			}
+		})	
+	</script>
+</body>
+</html>

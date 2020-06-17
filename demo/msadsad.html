@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="boxid">
+		<div id="innerid">
+			<button>click</button>
+		</div>
+	</div>
+	<script type="text/javascript">
+		document.getElementsByTagName('button')[0].addEventListener('click',(e)=>{
+			console.log(e)
+		})
+		document.body.addEventListener('click',(e)=>{
+			e.stopPropagation()
+			console.log('mousedown')
+		},true)
+	</script>
+</body>
+</html>

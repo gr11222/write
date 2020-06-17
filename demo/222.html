@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var arr = [1,2,3];
+		Array.prototype.fn = function (argument) {
+			var a = this;
+			var a = [...a,...a.map(function(item){
+				return item**2
+			})]
+			console.log(a)
+		}
+		arr.fn()
+	</script>
+</body>
+</html>

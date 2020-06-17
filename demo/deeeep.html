@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function fn (arr,target){
+			debugger
+			var res = [];
+			for (var i = 0; i < arr.length; i++) {
+				var left = target - arr[i];
+				if(!left&&res.indexOf(arr[i])==-1){
+					res.push([arr[i]])
+				}else if(left>0){
+					debugger
+					var res2 = fn(arr.slice(i), left)
+					console.log(res2)
+					res = res.concat(res2.map(item=>[arr[i]].concat(item)))
+				}
+			}
+			return res;
+		}
+		console.log(fn([1,1,2,3],2))
+	</script>
+</body>
+</html>

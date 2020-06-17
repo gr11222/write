@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box">545845845</div>
+	<script type="text/javascript">
+		var fragment = document.createDocumentFragment();
+		var browsers = ['Firefox', 'Chrome', 'Opera', 
+		    'Safari', 'Internet Explorer'];
+
+		browsers.forEach(function(browser) {
+		    var li = document.createElement('li');
+		    li.textContent = browser;
+		    fragment.appendChild(li);
+		});
+		document.getElementById("box").appendChild(fragment);
+		document.getElementById("box").onclick = function(e){
+			console.log(e.target)
+		}
+	</script>
+</body>
+</html>

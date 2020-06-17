@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id='box'>
+		
+		{{a}}
+		<vue-child @aadd='sumAdd' :sum='a'></vue-child>
+		<vue-child @aadd='sumAdd'></vue-child>
+		<vue-child @aadd='sumAdd'></vue-child>
+		<input type="text" name="" v-model='newValue.value'>
+		<tem2 v-bind="newValue"></tem2>
+	</div>
+	<template id="tem">
+		<div>
+			{{sum}}
+			<button type='button' v-on:click='add'>{{counter}}</button>
+		</div>
+	</template>
+	<template id="tem2">
+		<div>
+			{{newA}}
+			{{fatherData}}
+			<tem2-child :father-data = 'fatherData' @child-to = 'changeData'>solt插槽</tem2-child>
+		</div>
+	</template>
+	<template id="tem3">
+		<div>
+			{{fatherData}}
+			<slot></slot>
+			<!-- <button type="button" @click = 'changeDa'>www</button> -->
+			<input type="text" name="" @keyup = 'changeDa' ref='aaa'>
+		</div>
+	</template>
+	<script type="text/javascript" src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+	<script type="text/javascript">
+		var tem2Child = {
+			props:{
+				fatherData:Object
+			},
+			template:'#tem3',
+			data:function(){
+				return{
+					// childrenData:this.fatherData
+				}
+			},
+			methods:{
+				changeDa :function(e){
+					console.log(this.$refs.aaa.value)
+					this.$emit('child-to',{name:e.target.value,
+						age:20})
+				}
+			},
+			computed:{
+				
+			}
+		}
+		var tem2 = {
+			props:['value'],
+			template:'#tem2',
+			components:{
+				'tem2Child':tem2Child
+			},
+			data:function(){
+				return{
+					fatherData:{
+						name:"张三",
+						age:20
+					}
+				}
+			},
+			methods:{
+				changeData:function(payload){
+					console.log(payload)
+					this.fatherData = payload;
+				}
+			},
+			computed:{
+				newA :function(){
+					return this.value.join('-')
+				}
+			}
+		}
+		var vueChild={
+			props:['sum'],
+
+			data:function(){
+				return{
+					counter:0
+				}
+			},
+			template:'#tem',
+			methods:{
+				add:function(){
+					this.counter++;
+					this.$emit('aadd',this.counter)
+					setTimeout(function(){
+						console.log(this)
+					}.bind(this),500)				}
+			}
+		}
+		var vm = new Vue({
+			el:'#box',
+			data:{
+				a:0,
+				newValue:{
+					value:[1,2,3,4],
+					age:0
+				}
+			},
+			components:{
+				'vue-child':vueChild,
+				'tem2':tem2
+			},
+			methods:{
+				sumAdd : function(payload){
+					console.log(payload)
+					this.a++;
+				}
+			}
+
+		})
+	</script>
+</body>
+</html>

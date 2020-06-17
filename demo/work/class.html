@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// class不会存在变量提升 必须先定义后使用 不能被重复定义类似const
+		class Point{
+			constructor(x){
+				this.x = x;
+			}
+			toString(){
+				console.log(this.x)
+			}
+		}
+		// ES5 的构造函数Point，对应 ES6 的Point类的构造方法
+		// Point === Point.prototype.constructor
+		// 等价于
+		function Point(x){
+			this.x = x
+		}
+		Point.toString = function(){
+			console.log(this.x)
+		}
+		// 向类中添加方法
+		class Point {
+		  constructor(){
+		    // ...
+		  }
+		}
+
+		Object.assign(Point.prototype, {
+		  toString(){},
+		  toValue(){}
+		});
+		// 类的内部所有定义的方法，都是不可枚举的
+		class Point {
+		  constructor(x, y) {
+		    // ...
+		  }
+
+		  toString() {
+		    // ...
+		  }
+		}
+
+		Object.keys(Point.prototype)
+		// []
+		Object.getOwnPropertyNames(Point.prototype)
+		// ["constructor","toString"]
+	</script>
+</body>
+</html>

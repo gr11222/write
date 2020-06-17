@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button>btn</button>
+	<script type="text/javascript">
+		var throttle = function(func, delay) {            
+		    var timer = null;      
+		    var context = this;               
+		    return function() {                
+		    	var args = arguments;        
+		        var context = this;               
+		        var args = arguments;                
+		        if (!timer) {   
+			        timer = setTimeout(function() {
+			                timer = null;                    
+			            }, delay);                 	
+		         	func.apply(context, args);	                    
+		        }else{
+		        	clearTimeout(timer)
+      				timer = setTimeout(function() {                                      
+		                timer = null;                    
+		            }, delay);
+		        }            
+		    }        
+		}   
+		document.getElementsByTagName("button")[0].onclick = throttle(()=>{
+				console.log('btn click!')
+			},1000)
+	</script>	
+</body>
+</html>

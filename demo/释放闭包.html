@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var testB = function() {
+		    var newObj = document.createElement("div"); // 无法被垃圾回收
+		    newObj.style.width = "100px";
+		    newObj.style.height = "100px";
+		    newObj.style.backgroundColor = "red";
+		    document.getElementsByTagName('body')[0].appendChild(newObj);
+		    newObj.onclick = function (){
+		    	console.log(newObj)
+		    };
+		}
+		
+		setInterval(testB,100)
+	</script>
+</body>
+</html>

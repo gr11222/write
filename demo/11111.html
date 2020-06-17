@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<script type="text/javascript">
+		// document.createElement("a");
+		var str = "<a id='aa' style='display:none' href='http://www.baidu.com' target='__blank' download></a>";
+		document.getElementsByTagName('body')[0].innerHTML = str;
+		console.log(document.getElementById('aa'))
+		document.getElementById('aa').click()
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		let Vue = function(){
+			this._event = Object.create(null);
+		};
+
+		Vue.prototype.$on = function(event,fn){
+			let vm = this;
+			(vm._event[event] || (vm._event[event]=[])).push(fn);
+			return vm;
+		}
+		Vue.prototype.$emit = function(event){
+			let cbs = this._event[event];
+			for (var i = 0; i < cbs.length; i++) {
+				cbs[i].apply(this,arguments)
+			}
+			return this
+		}
+		Vue.prototype.$off = function(event,fn){
+			let vm = this;
+			let cbs = vm._event[event];
+			if (!cbs) {
+		      return vm
+		    }
+		    if (!fn) {
+		      vm._event[event] = null
+		      return vm
+		    }
+		    let cb;
+		    for (var i = 0; i < cbs.length; i++) {
+		    	cb = cbs[i];
+		    	if(cb === fn || cb.fn===fn){
+		    		cbs.splice(i,1);
+		    		break
+		    	}
+		    }
+		    return vm
+		}
+		Vue.prototype.$once = function(event,fn){
+			let vm = this;
+			let on = function(){
+				vm.$off(event,on)
+				fn.apply(vm,arguments)
+			};
+			// $off 接触 $once
+			on.fn = fn;
+			vm.$on(event, on)
+    		return vm
+		}
+
+		var a = new Vue()
+		a.$once("c",function(){
+			console.log(1111111)
+		})
+
+	</script>
+</body>
+</html>

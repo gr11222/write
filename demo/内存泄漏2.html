@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<p>hello,world</p>
+            <button id="grow">grow</button>
+	<script type="text/javascript">
+		 var x = [];
+    function grow() {
+      x.push(new Array(1000000).join('x'));
+    }
+    document.getElementById('grow').addEventListener('click', grow);
+	</script>
+</body>
+</html>

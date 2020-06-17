@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function Promise(fn){
+			var self = this;
+			self.status = "PENDING";
+			self.data = undefined;
+			self.onResolvedCallback = [];
+			self.onRejectedCallback = [];
+			fn(resolve,reject);
+			function resolve(value){
+
+			}
+			function reject(value){
+
+			}
+		}
+		Promise.prototype.then = function(){
+			
+		}	
+	</script>
+</body>
+</html>

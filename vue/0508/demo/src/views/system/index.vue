@@ -18,7 +18,7 @@
       :api="table_api"
       selection="checkbox"
       :refresh="refresh"
-    >22222</Table>
+    ></Table>
   </div>
 </template>
 

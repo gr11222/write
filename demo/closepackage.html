@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#box{
+			transition :all 1s;
+		}
+	</style>
+</head>
+<body>
+	<!-- <div id="box" style="width: 100px;height: 100px;background-color: red;"></div> -->
+	<script type="text/javascript">
+	function quickSort(array) {
+		function sort(prev, numsize) {
+			var nonius = prev;
+			var j = numsize - 1;
+			var flag = array[prev];
+			if ((numsize - prev) > 1) {
+				while (nonius < j) {
+					for (; nonius < j; j--) {
+						if (array[j] < flag) {
+							array[nonius++] = array[j];　 //a[i] = a[j]; i += 1;
+							break;
+						};
+					}
+					for (; nonius < j; nonius++) {
+						if (array[nonius] > flag) {
+							array[j--] = array[nonius];
+							break;
+						}
+					}
+				}
+				array[nonius] = flag;
+				sort(0, nonius);
+				sort(nonius + 1, numsize);
+			}
+		}
+		sort(0, array.length);
+		return array;
+	}
+	console.log(quickSort(2,1,5,6,1,5))
+	</script>
+</body>
+</html>

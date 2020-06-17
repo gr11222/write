@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var arr = ['/a/b/c','/d/e','/f/g']
+		function fn(arr){
+			var obj = {};
+			// var arr1 = arr.split('/');
+			for (var i = 0; i < arr.length; i++) {
+				
+			}
+		}
+		function fn1 (str) {
+			var arr = str.split('/');
+			if(arr.length===3){
+				var obj1 = {}
+				obj1[arr[1]]=arr[2];
+				return obj1
+			}else{
+				var obj = {}
+				obj[arr[1]] = fn1(str.slice(2))
+				return obj
+			}
+		}
+		console.log(fn1('/a/bc/c/d/e'))
+		
+	</script>
+</body>
+</html>

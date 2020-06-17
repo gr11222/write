@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" style="width: 100%;height: 100%">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body style="width: 100%;height: 100%">
+	<script type="text/javascript">
+		let a = ()=>{
+				console.log(this)
+		}
+		document.getElementsByTagName('body')[0].onclick = a.bind([1,2]);
+	</script>
+</body>
+</html>

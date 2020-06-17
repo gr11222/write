@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var timeArr = [];
+		for (var i = 0; i < 100; i++) {
+			(function(i){
+				timeArr[i] = setInterval(function(){
+					document.body.appendChild(document.createTextNode(i));
+				},i*10)
+			})(i)
+			timeArr[i] = null;
+		}
+	</script>
+</body>
+</html>

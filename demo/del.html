@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title></title>
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<style type="text/css">
+		.clearfix:after{content: '';display: block;clear: both;height: 0;}
+	</style>
+</head>
+<body>
+	<input type="range" min="-100000" value="1">
+	<div>div<button>2222</button></div>
+	<script type="text/javascript">
+		$("div").on('click','button',function(e){
+			debugger
+			console.log(e)
+		})
+		$("input").on('change',function(){
+			console.log(this.value)
+		})
+	</script>
+</body>
+</html>

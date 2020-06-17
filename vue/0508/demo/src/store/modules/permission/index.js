@@ -13,7 +13,7 @@ const user = {
 
   actions: {
     // 设置用户信息
-    setRouters({ commit }) {
+    setRouters({ commit }) {  
       new Promise((res) => {
         let routers;
         const userid = getCookie("userid");

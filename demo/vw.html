@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='box'>
+        <father></father>
+    </div>
+    <template id="tem">
+        <div>
+            father
+            <input type="text" name="" v-model='age'>
+            <button @click="changeData">aaaa</button>
+            <button @click="conso">aaaa</button>
+            <ul>
+                <li v-for="index in arr">{{index}}</li>
+            </ul>
+        </div>
+    </template>
+    <script type="text/javascript" src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+    <script type="text/javascript">
+    var child = {
+        data: function() {
+            return {
+                age: 1,
+                arr: [
+                    2, 3, 4, 5, 6, { name: "wowowo" }
+                ]
+            }
+        },
+        inject:['aaa'],
+        template: '#tem',
+        methods: {
+            changeData: function() {
+                this.arr[5].name = "dsds"
+            },
+            conso: function() {
+                console.log(this.arr)
+            }
+        },
+        mounted:function(){
+            console.log(this.aaa)
+        },
+        watch: {
+            arr: {
+                handler: function(newval) {
+                    console.log(newval)
+                },
+                deep:true
+            }
+        }
+    }
+
+
+    var vm = new Vue({
+        el: '#box',
+        provide:{
+            aaa:666666
+        },
+        components: {
+            'father': child
+        }
+    })
+    </script>
+</body>
+
+</html>

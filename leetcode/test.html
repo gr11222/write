@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body> 
+	<div id='root'>
+	    <span>123
+	        <a href="#">
+	            sdsd
+	        </a>
+	        <div>sdsd<a>这是一个a标签</a></div>
+	    </span>
+	    <span>456
+	        <p>这是一个p标签</p>
+	    </span>
+	</div>
+
+    <script type="text/javascript">
+    function deepTraversal(node) {  
+    var nodeList = [];  
+    if (node) {  
+        var stack = [];  
+        stack.push(node);  
+        while (stack.length != 0) {  
+            var childrenItem = stack.shift();  
+            nodeList.push(childrenItem);  
+            var childrenList = childrenItem.children;  
+            for (var i = 0; i < childrenList.length; i++)  
+                stack.push(childrenList[i]);  
+        }  
+    }    
+    return nodeList;  
+}   
+var root = document.getElementById('root')
+console.log(deepTraversal(root))
+    </script>
+</body>
+
+</html>
+
+
+<!-- vue路由守卫 -->
+<!-- css布局 -->
+<!-- deepclone -->

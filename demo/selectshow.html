@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box1" style="height: 100px;width: 100px;border:1px solid skyblue;">
+		
+	</div>
+	<div id="box2" style="height: 100px;width: 100px;border:1px solid pink;"><input type="text"></div>
+	
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script type="text/javascript">
+		$('#box2').hide();
+		console.log($("input").not(":visible"))
+		// $('#box2').show();
+		// console.log($("input").is('input[type=text]'))
+	</script>
+</body>
+</html>

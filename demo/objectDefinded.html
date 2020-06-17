@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	☻
+	<script type="text/javascript">
+		document.oncontextmenu = function () { return false; };
+        document.onkeydown = function () {
+            if (window.event && window.event.keyCode == 123) {
+                event.keyCode = 0;
+                event.returnValue = false;
+                return false;
+            }
+            if (window.event && window.event.keyCode == 122) {
+                event.keyCode = 0;
+                event.returnValue = false;
+                return false;
+            }
+        }; 	</script>
+</body>
+</html>

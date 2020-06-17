@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><Document></Document></title>
+	<script
+  src="http://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+	<div id="aaa">
+		<div>
+			2222222
+		</div>
+		<div>
+			333333333
+		</div>
+		<div>
+			2222222
+		</div>
+		<div>
+			2222222
+		</div>
+	</div>
+	<script type="text/javascript">
+	$("#aaa *").each(function(i,item){
+		// console.log($(item))
+		$(item).html($(item).html().replace(/2222/,"dsdsad"))
+	})
+	</script>
+</body>
+</html>

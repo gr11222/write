@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id='box'>
+		<father></father>
+	</div>
+	<template id="tem">
+		<div>
+			father
+			<input type="text" name="" v-model='age'>
+			<child  :faval.sync='age'></child>
+		</div>
+	</template>
+	<template id="tem2">
+		<div style="border: 1px solid #000;">
+			child <br>
+			<input type="text" name="" ref='childInput' v-model='age'>
+			<ul>
+				<li>{{age}}</li>
+			</ul>
+			{{faval}}
+		</div>
+	</template>
+	<script type="text/javascript" src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+	<script type="text/javascript">
+		var child = {
+			props:['faval'],
+			data:function()
+			{
+				return{
+					age:this.faval
+				}
+			},
+			template:'#tem2',
+			// methods:{
+			// 	changeData:function(){
+			// 		this.$emit('update:faval',this.$refs.childInput.value)
+			// 	}
+			// },
+			watch:{
+				faval:function(){
+					this.age=this.faval;
+				},
+				age:function(){
+					console.log(this.age)
+					this.$emit('update:faval',this.age)
+				}
+			}
+		}
+		var father = {
+			data:function(){
+				return{
+					age:0
+				}
+			},
+			template:'#tem'
+			,
+			components:{	
+				'child':child
+			}
+		}
+		
+		var vm = new Vue({
+			el:'#box',
+			components:{
+				'father':father
+			}
+		})	
+	</script>
+</body>
+</html>

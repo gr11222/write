@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    setTimeout(function() {
+        console.log('setTimeout');
+    })
+
+    new Promise(function(resolve) {
+        console.log('promise');
+        resolve()
+    }).then(function() {
+        console.log('then');
+    }).then(function() {
+        setTimeout(function() {
+            console.log(3)
+        })
+        Promise.resolve().then(()=>{
+        	console.log('then3')
+        })
+    }).then(function() {
+        console.log('then2');
+    })
+
+    console.log('console');
+    </script>
+</body>
+
+</html>

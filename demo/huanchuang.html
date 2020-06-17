@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>模拟进度条</title>
+    <style type="text/css">
+    #box {
+        height: 16px;
+        background-color: #f00;
+        color: #fff;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="box">0%</div> <input type="button" name="" value="加载" id="btn">
+    <script type="text/javascript">
+    window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+    var oBox = document.getElementById("box"),
+        oBtn = document.getElementById("btn"),
+        progress = 0;
+
+    function requestAnim(timestamp) {
+        if (progress < 100) {
+        progress += 1;
+        oBox.style.width = progress*10 + 'px';
+        oBox.innerHTML = progress + '%';
+            requestAnimationFrame(requestAnim);
+        }
+    }
+    requestAnimationFrame(requestAnim);
+    oBtn.addEventListener('click', function() {
+        oBox.style.width = "1px";
+        progress = 0;
+        requestAnimationFrame(requestAnim);
+    }, false);
+    </script>
+</body>
+
+</html>

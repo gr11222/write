@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css"></style>
+</head>
+<body>
+	<div id="box">
+		<father></father>
+	</div>
+	<template id='father_box'>
+		<div style="border: 1px solid skyblue;">
+			<input type="text" name="" v-model='theData'><br>
+			{{theData}}
+			<children :child-data.sync = 'theData'></children>
+		</div>
+	</template>
+	<template id='children_box'>
+		<div style="border: 1px solid red;">
+			props:{{thedata}} <br>
+			<input type="text" name="" v-model='thedata'>
+		</div>
+	</template>
+	<script type="text/javascript" src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+	<script type="text/javascript">
+		var children = {
+			template:'#children_box',
+			props:{
+				childData:{
+
+				}
+			},
+			methods:{
+
+			},
+			data:function(){
+				return{
+					thedata : this.childData
+				}
+			},
+			watch:{
+				thedata:function(){
+					this.$emit('update:childData',this.thedata)
+				},
+				childData:function(){
+					this.thedata = this.childData
+				}
+			}
+		}
+		var father = {
+			template:'#father_box',
+			data:function(){
+				return{
+					theData:'init'
+				}
+			},
+			components:{
+				'children':children
+			}
+		}
+		var vm = new Vue({
+			el:'#box',
+			components:{
+				'father':father
+			},
+			mounted:function(){
+				console.log(this)
+			}
+		})
+	</script>
+</body>
+</html>

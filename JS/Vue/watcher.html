@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div></div>
+	<script type="text/javascript">
+		let Vue = function(options){
+			this.init(options);
+		}
+		Vue.prototype.init = function(options){
+			let vm = this;
+			this.$options = options;
+	        this.$data = options.data;
+	        this.$el = document.querySelector(options.el);
+	        
+		}
+
+		new Vue({
+			el:document.getElementsByTagName('div')[0],
+			data:{
+				key:"222"
+			}
+		})
+	</script>
+</body>
+</html>

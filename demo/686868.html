@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		Function.prototype.mcall = function(context){
+			if(typeof context === 'undefiend' || context === null){
+				return window
+			}
+			// let fn = Symbol()
+			context['fn'] = this;
+			let res =  context['fn']([...arguments].slice(1))
+			delete context['fn']
+			return res
+		}
+		var a = {name:2,fn:22222}
+		var b = {name:3,fn:function(){console.log(this.name)}}
+		Function.prototype.fn = function(){console.log(22222222)}
+		b.fn.mcall(a)
+			console.log(a)
+	</script>
+</body>
+</html>

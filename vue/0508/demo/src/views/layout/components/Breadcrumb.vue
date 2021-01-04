@@ -10,7 +10,7 @@
   </el-breadcrumb>
 </template>
   
-  <script>
+<script>
 export default {
   data() {
     return {

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+4784848
+<script type="text/javascript">
+	function fn (arr) {
+		let res = [];
+		function deep(arr,nums){
+			if(arr.length === nums.length){
+				res.push([...arr]);
+				return
+			}
+			
+			for (var i = 0; i < nums.length; i++) {
+				if(arr.includes(nums[i])){
+					continue;
+				}else{
+					arr.push(nums[i]);
+					deep(arr,nums);
+					arr.pop();
+				}
+			}
+		}
+		deep([],arr)
+		return res;
+	}
+	console.log(fn([1,2,3]))
+</script>
+</body>
+</html>

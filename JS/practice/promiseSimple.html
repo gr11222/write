@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function Promise(fn){
+			this.callbacks = []
+			function resolve(val){
+				setTimeout(() => {
+			      this.data = val;
+			      this.callbacks.forEach((callback) => callback(val));
+			    });
+			}
+			fn(resolve.bind(this))
+		}
+		Promise.prototype.then = function(onResolved){
+			return new Promise((res)=>{
+				this.callbacks.push(()=>{
+					let resault = onResolved(this.data);
+					if(resault instanceof Promise){
+						resault.then(res)
+					}else{
+						res(resault)
+					}
+				})
+			})
+		}
+
+
+		new Promise(function(res){
+			setTimeout(function(){
+				debugger
+				console.log(111111)
+				res(222)
+			},500)
+		}).then(function(data){
+			console.log(data);
+			return new Promise(function(res){
+				setTimeout(function(){
+					console.log(3333)
+					res(4444)
+				},1500)
+			})
+		}).then((data)=>data).then(function(data){
+			console.log(data)
+		})
+		// const p = new Promise((resolve) => { 
+		//   setTimeout((resolve),1000) 
+		// }) 
+		// p.then((value) => console.log(value)) 
+		// p.then((value) => console.log(value))
+	</script>
+</body>
+</html>

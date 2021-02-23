@@ -65,7 +65,7 @@
             </el-form>
           </div>
         </el-card>
-        <el-card class="box-card">
+        <el-card class="box-card"> 
           <div slot="header" class="clearfix">
             <span>name</span>
           </div>

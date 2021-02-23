@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+  <el-container class="headeraaa">
     <el-header style="text-align: right; font-size: 14px;height:50px;">
       <i class="el-icon-user-solid" style="margin-right: 5px;"></i>
       <span>用户：</span>
@@ -100,4 +100,9 @@ export default {
   visibility: hidden;
   overflow: hidden;
 }
+</style>
+<style scoped>
+  .headeraaa >>> .aaa{
+    color:red;
+  }
 </style>
